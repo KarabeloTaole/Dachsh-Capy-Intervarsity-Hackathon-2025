@@ -31,4 +31,14 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
     { rank: 6, username: 'new_joiner', progress: 150, percentage: 30, trend: '+R25', avatar: '🌟', isCurrentUser: false }
   ];
 
+  const progressHistory = [
+    { date: '2025-09-01', you: 50, challenge_king: 60, savings_pro: 45 },
+    { date: '2025-09-03', you: 120, challenge_king: 140, savings_pro: 110 },
+    { date: '2025-09-05', you: 180, challenge_king: 210, savings_pro: 165 },
+    { date: '2025-09-08', you: 250, challenge_king: 280, savings_pro: 230 },
+    { date: '2025-09-10', you: 320, challenge_king: 350, savings_pro: 295 },
+    { date: '2025-09-12', you: 380, challenge_king: 425, savings_pro: 350 }
+  ];
+  
+
 };
