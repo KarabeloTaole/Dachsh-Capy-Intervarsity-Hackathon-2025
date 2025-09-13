@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 const Leaderboard = ({ onBack }) => {
-  const [timeFilter] = useState('monthly');
-  const [categoryFilter] = useState('all');
+  const [timeFilter, setTimeFilter] = useState('monthly');
+  const [categoryFilter, setCategoryFilter] = useState('all');
 
   // Mock leaderboard data for different time periods genrated by Claude
   const leaderboardData = {
@@ -95,6 +95,60 @@ const Leaderboard = ({ onBack }) => {
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
           {/* Main Leaderboard */}
           <div className="xl:col-span-3 space-y-6">
+            {/* Filters */}
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-dark-purple mb-2">Filter Rankings</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <button 
+                      onClick={() => setTimeFilter('weekly')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                        timeFilter === 'weekly' 
+                          ? 'bg-light-purple text-white' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      This Week
+                    </button>
+                    <button 
+                      onClick={() => setTimeFilter('monthly')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                        timeFilter === 'monthly' 
+                          ? 'bg-light-purple text-white' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      This Month
+                    </button>
+                    <button 
+                      onClick={() => setTimeFilter('allTime')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
+                        timeFilter === 'allTime' 
+                          ? 'bg-light-purple text-white' 
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      All Time
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-md font-medium text-dark-purple mb-2">Category</h4>
+                  <select 
+                    value={categoryFilter}
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                    className="px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-light-purple focus:ring-4 focus:ring-light-purple/20 transition-all duration-300"
+                  >
+                    <option value="all">All Categories</option>
+                    <option value="emergency">Emergency Fund</option>
+                    <option value="investment">Investments</option>
+                    <option value="vacation">Vacation Fund</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             {/* Top 3 Podium */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
               <h3 className="text-xl font-semibold text-dark-purple mb-6">Top Performers</h3>
