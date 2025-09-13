@@ -22,4 +22,13 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
     prize: '🏆 Winner gets R50 bonus + Gold Badge'
   };
 
+  const participants = [ //this is the mock data for the participants in the challenge
+    { rank: 1, username: 'challenge_king', progress: 425, percentage: 85, trend: '+R75', avatar: '👑', isCurrentUser: false },
+    { rank: 2, username: 'you', progress: 380, percentage: 76, trend: '+R60', avatar: '🎯', isCurrentUser: true },
+    { rank: 3, username: 'savings_pro', progress: 350, percentage: 70, trend: '+R45', avatar: '⭐', isCurrentUser: false },
+    { rank: 4, username: 'money_master', progress: 280, percentage: 56, trend: '+R40', avatar: '💎', isCurrentUser: false },
+    { rank: 5, username: 'penny_saver', progress: 220, percentage: 44, trend: '+R30', avatar: '🥉', isCurrentUser: false },
+    { rank: 6, username: 'new_joiner', progress: 150, percentage: 30, trend: '+R25', avatar: '🌟', isCurrentUser: false }
+  ];
+
 };
