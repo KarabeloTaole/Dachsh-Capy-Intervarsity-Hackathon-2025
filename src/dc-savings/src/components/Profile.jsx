@@ -2,13 +2,16 @@
 
 export default function ProfilePage({ onLogout }) {
   const [activeTab, setActiveTab] = useState('profile');
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   
   const [userProfile, setUserProfile] = useState({
     name: "Karabelo Taole",
     email: "karabelo@email.com",
     phone: "+27 123 456 789",
+    bio: "Passionate saver working towards financial freedom! 💪",
+    location: "Johannesburg, South Africa",
+    joinDate: "January 2024",
     avatar: "👤",
     savings: 1520,
     goal: 2500,
@@ -32,7 +35,7 @@ export default function ProfilePage({ onLogout }) {
   ];
 
   return (
-    <div className={`h-screen w-screen font-libre relative overflow-hidden transition-all duration-500 ${
+    <div className={`min-h-screen font-libre relative overflow-hidden transition-all duration-500 ${
       darkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
       {/* Floating decorative circles */}
@@ -44,7 +47,7 @@ export default function ProfilePage({ onLogout }) {
       </div>
 
       {/* Main Profile Content */}
-      <div className="relative h-screen w-screen flex flex-col items-center justify-start px-4 py-8">
+      <div className="relative min-h-screen flex flex-col items-center justify-start px-4 py-8">
         <div className="max-w-4xl w-full space-y-8">
           
           {/* Header */}
@@ -226,9 +229,33 @@ export default function ProfilePage({ onLogout }) {
               </div>
             </div>
           )}
-
-
-          
+          {/* Stats Tab */}
+          {activeTab === 'stats' && (
+            <div className="space-y-6 animate-slideUp">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  { label: 'Total Saved', value: `R${userProfile.savings}`, icon: '💰' },
+                  { label: 'Days Active', value: '245', icon: '📅' },
+                  { label: 'Goal Progress', value: `${Math.round(progress)}%`, icon: '🎯' },
+                  { label: 'Friends', value: userProfile.friends, icon: '👥' }
+                ].map((stat, i) => (
+                  <div key={i} className={`rounded-3xl p-6 border-2 shadow-xl transition-all duration-300 hover:shadow-2xl ${
+                    darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-100'
+                  }`}>
+                    <div className="text-center">
+                      <div className="text-4xl mb-2">{stat.icon}</div>
+                      <h4 className={`font-bold text-2xl ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+                        {stat.value}
+                      </h4>
+                      <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        {stat.label}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Logout Button */}
           <div className="text-center">
