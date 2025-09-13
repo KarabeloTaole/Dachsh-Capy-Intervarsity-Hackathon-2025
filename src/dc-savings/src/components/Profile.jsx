@@ -2,7 +2,7 @@
 
 export default function ProfilePage({ onLogout }) {
   const [activeTab, setActiveTab] = useState('profile');
-  const [darkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   
   const [userProfile, setUserProfile] = useState({
@@ -189,6 +189,47 @@ export default function ProfilePage({ onLogout }) {
               </div>
             </div>
           )}
+
+          {/* Settings Tab */}
+          {activeTab === 'settings' && (
+            <div className="space-y-6 animate-slideUp">
+              <div className={`rounded-3xl p-8 border-2 shadow-xl transition-all duration-300 ${
+                darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-100'
+              }`}>
+                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+                  App Settings
+                </h3>
+                
+                <div className="space-y-6">
+                  {/* Dark Mode Toggle */}
+                  <div className="flex items-center justify-between p-4 rounded-xl bg-lightPurple/10">
+                    <div>
+                      <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+                        🌙 Dark Mode
+                      </h4>
+                      <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                        Toggle between light and dark themes
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setDarkMode(!darkMode)}
+                      className={`w-14 h-8 rounded-full transition-all duration-300 ${
+                        darkMode ? 'bg-lightPurple' : 'bg-gray-300'
+                      }`}
+                    >
+                      <div className={`w-6 h-6 bg-white rounded-full transition-all duration-300 ${
+                        darkMode ? 'translate-x-7' : 'translate-x-1'
+                      }`}></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+
+          
+
           {/* Logout Button */}
           <div className="text-center">
             <button
