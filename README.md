@@ -1,150 +1,284 @@
-# South African Intervarsity Hackathon Submission Template - 2025
+# 💰 DC Savings
+### *A Gamified Social Savings Platform*
 
-Welcome to the official **Hackathon Submission Template** for the **South African Intervarsity Hackathon 2025**! This repository is designed to help participants organize their project submissions in a **consistent, judge-friendly structure** while supporting any tech stack.
+![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=flat-square&logo=react&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1.13-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7.1.2-646CFF?style=flat-square&logo=vite&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+
+> **Transform your savings journey into an engaging, social experience with challenges, leaderboards, and community support!**
 
 ---
+###Meet  the team
 
-## 📂 Repository Structure
+ | Name | Links |
+|----------------|------|
+| Unathi Dlamini<br><br><img src="./assets/phot2.JPG" width="100"> | <br>[<img src="https://github.com/favicon.ico" width="16" height="16">](https://github.com/un4thi) [<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/linkedin.svg" width="16" height="16">](https://www.linkedin.com/in/unathi-dlamini-237007224/)
+| Karabelo Taole<br><br><img src="./assets/phot.jpg" width="100"> | <br>[<img src="https://github.com/favicon.ico" width="16" height="16">](https://github.com/KarabeloTaole) [<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/linkedin.svg" width="16" height="16">](https://www.linkedin.com/in/karabelo-taole-70480322a/)
+---
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025.git
+cd Dachsh-Capy-Intervarsity-Hackathon-2025
+
+# Navigate to the app directory
+cd src/dc-savings
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
 ```
-├── assets/
-│   └── README.md
-├── demo/
-│   ├── OVERVIEW.md
-│   └── README.md
-├── docs/
-│   ├── ACKNOWLEDGEMENTS.md
-│   ├── SETUP.md
-│   ├── TEAM.md
-│   └── USAGE.md
-├── scripts/
-│   └── README.md
-├── src/
-│   └── README.md
-├── vendor/
-│   └── README.md
-├── .dockerignore
-├── .editorconfig
-├── .gitattributes
-├── .gitignore
-├── Dockerfile
-├── LICENSE
-└── README.md
+
+**Open** `http://localhost:5173` **in your browser** 🎉
+
+---
+
+## 🎯 What is DC Savings?
+
+DC Savings revolutionizes personal finance by combining savings tracking with social gamification. Users can:
+
+- 📊 **Track savings** with beautiful, interactive dashboards
+- 🎮 **Join challenges** to stay motivated and engaged
+- 🏆 **Compete on leaderboards** with friends and community
+- 📱 **Share milestones** through the social feed
+- 🎉 **Celebrate achievements** with confetti and rewards
+
+**Built for the Dachsh-Capy Intervarsity Hackathon 2025**
+
+---
+
+## ✨ Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 💰 Smart Dashboard
+- Real-time savings tracking
+- Interactive charts & visualizations  
+- Progress monitoring
+- Quick action buttons
+
+### 🎯 Gamified Challenges
+- Community savings goals
+- Achievement unlocking
+- Reward systems
+- Progress tracking
+
+</td>
+<td width="50%">
+
+### 🏆 Social Leaderboards
+- Community rankings
+- Achievement showcases
+- Success stories
+- Competitive motivation
+
+### 📱 Social Feed
+- Share milestones
+- Community support
+- Engagement features
+- Inspiration & motivation
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend Framework**
+- **React 19.1.1** - Modern component-based architecture
+- **React Router DOM 7.9.1** - Client-side routing
+
+**Styling & UI**
+- **Tailwind CSS 4.1.13** - Utility-first CSS framework
+- **React Confetti 6.4.0** - Celebration animations
+
+**Data Visualization**
+- **Recharts 3.2.0** - Interactive charts and graphs
+
+**Development Tools**
+- **Vite 7.1.2** - Lightning-fast build tool
+- **ESLint** - Code quality and linting
+- **PostCSS & Autoprefixer** - CSS processing
+
+---
+
+## 📁 Project Structure
+
 ```
----
-
-### 🔹 Description of Each Folder/File
-
-- **assets/**  
-    All assets used by your project such as **images**, **audio files**, **3D models**, **datasets** and so-on, should be placed in this folder.
-
-- **demo/**  
-    Your **demo video**, **PowerPoint presentation**, **Overview readme doc** and or any **examples** should be placed in this folder.
-
-- **docs/**  
-    Contains essential documentation about your team and project (these must be written by you):
-    - `ACKNOWLEDGEMENTS.md` → References all third-party libraries and sources used
-    - `SETUP.md` → Instructions for installing dependencies and running the project  
-    - `TEAM.md` → Team member names, roles, and contact info  
-    - `USAGE.md` → Instructions for using or testing the project 
-
-- **scripts/**  
-    All **utility**, **automation** and **project-management** scripts should be placed in this folder.
-
-- **src/**  
-    All source code files should be placed in this folder. You may organize this folder as needed (e.g., `backend/`, `frontend/`, `lib/`, `source/` and or `include/` folders and so on).
-
-- **vendor/**  
-    All third-party libraries, code and or submodules should be placed in this folder along **with the appropriate licensing and or references**. If you are not able to link the modules from this folder to your codebase properly, you may put the third-party modules inside the `src/` folder with the rest of your code however, it **must be made clear** which modules are **third-party**, along with their **licensing**.
-    Since many tech-stacks already use package managers, this `vendor/` folder is for self-included libraries, dependencies and submodules. **Auto-generated** dependency folders like `node_modules/` or `nuget/` should ideally be ignored by `.gitignore`.
-
-- **.dockerignore**  
-    Excludes build artifacts and other non-essential files from the Docker image. *You may delete this file if you do not plan on using Docker.*
-
-- **.editorconfig**  
-    Standardizes indentation, line endings, and character encoding across editors and platforms. It is **highly recommended** that you use a text editor/IDE that supports **.editorconfig**.
-
-- **.gitattributes**  
-    Ensures consistent handling of line endings, text, and binary files across different operating systems.
-
-- **.gitignore**  
-    Ignores build artifacts, OS files, IDE configs, and other non-essential files to keep the repository clean.
-
-- **Dockerfile**  
-    A "quick start" template **Dockerfile** to serve as a blueprint for containerizing your project in a **Docker image**. *You may delete this file if you do not plan on using Docker.*
-
-- **LICENSE**  
-    Default license template for your submission (MIT recommended).
-    *You must add the names of your team members to this template.*
-
-- **README.md**  
-    Hey wait, that's me!
+Dachsh-Capy-Intervarsity-Hackathon-2025/
+├── 📂 docs/    
+    ├── 📄 README.md                    # This file
+    ├── 📄 SETUP.md                     # Detailed setup instructions
+    ├── 📄 USAGE.md                     # User guide and feature walkthrough
+    ├── 📄 ACKNOWLEDGEMENTS.md          # Third-party credits
+├── 📂 demo/                        # Demo videos and presentations
+    ├── 📄 PROJECT_OVERVIEW.md          # Project summary and vision
+├── 📂 scripts/                     # Utility scripts (see scripts/README.md)
+├── 📂 vendor/                      # Third-party dependencies (see vendor/README.md)
+└── 📂 src/                         # Main application code
+    ├── 📂 dc-savings/              # React app configuration
+    │   ├── 📄 package.json         # Dependencies and scripts
+    │   └── 📂 public/              # Static assets
+    └── 📂 src/                     # Source code
+        ├── 📂 components/          # React components
+        │   ├── Challenge.jsx       # Challenge system
+        │   ├── Dashboard.jsx       # Main dashboard
+        │   ├── GlobalState.jsx     # State management
+        │   ├── Leaderboards.jsx    # Community rankings
+        │   ├── Login.jsx          # Authentication
+        │   ├── Navigation.jsx     # App navigation
+        │   ├── Profile.jsx        # User profiles
+        │   └── SocialFeed.jsx     # Social features
+        ├── App.jsx                # Main application
+        ├── main.jsx              # Entry point
+        └── index.css             # Global styles
+```
 
 ---
 
-## ✅ Submission Guidelines
+## 📖 Documentation
 
-1. Create your project's repo off of this template (click the `Use this template` button).  
-2. Fill in the `TEAM.md` file with your team members’ information. 
-3. Start hacking!
-4. Fill in `ACKNOWLEDGEMENTS.md`, `OVERVIEW.md`, `SETUP.md`, `USAGE.md` and `LICENSE`. 
-5. Link or include your demo video & PowerPoint in the `demo/` folder.  
-6. **Optional:** Include additional documentation and design notes in `docs/`.
-7. **Optional:** Include unit tests in `tests/`.
-8. Submit the link to your **public GitHub repository**.
+| Document | Description |
+|----------|-------------|
+| **[SETUP.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/SETUP.md)** | Complete installation and setup guide |
+| **[USAGE.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/USAGE.md)** | How to use the application - user guide |
+| **[PROJECT_OVERVIEW.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/demo/OVERVIEW.md)** | Project summary, inspiration, and future plans |
+| **[ACKNOWLEDGEMENTS.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/ACKNOWLEDGEMENTS.md)** | Credits for third-party libraries and resources |
 
 ---
 
-## 📑 Documentation Checklist
+## 🎥 Demo & Presentation
 
-| File                  | Required? | Notes                                                          |
-| --------------------- | --------- | -------------------------------------------------------------- |
-| `TEAM.md`             | ✅         | Must list all team members, their roles, and institutions      |
-| `OVERVIEW.md`         | ✅         | High-level description of your project and its purpose         |
-| `SETUP.md`            | ✅         | Instructions to install dependencies and run the project       |
-| `USAGE.md`            | ✅         | How to use/test the project after setup                        |
-| `ACKNOWLEDGEMENTS.md` | ✅         | Credit all third-party libraries, datasets, and resources used |
-| `LICENSE`             | ✅         | Include license type and add your team members’ names          |
-| `tests/`              | Optional  | Add test scripts or instructions if relevant                   |
-| `Dockerfile`          | Optional  | Only if you choose to containerize your project                |
-| Extra docs            | Optional  | Additional guides, design notes, or API references             |
+- **📺 [Demo Video](https://drive.google.com/file/d/1Tik-DqCu7cUZSxU-jRFhUMfXPR5tU58r/view?usp=sharing)** - Full application walkthrough
+- **📊 [Presentation](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/demo/Hackathon%20presentation.pdf)** - Project overview and highlights
 
 ---
 
-## 📌 Tips & Other Remarks
+## 🚀 Getting Started for Judges/Evaluators
 
-- Keep your code and assets organized within the `src/` and `assets/` directories.  
-- Use `.editorconfig` and `.gitattributes` to avoid formatting and line-ending issues.  
-- Follow the folder structure strictly — it will make judging smoother and faster.  
-- It is highly recommended that you use **Docker** for your submission however, it is **not required**. If you opt to **not** use **Docker**, please ensure that your setup instructions in `SETUP.md` are **straightforward**, **correct**, **comprehensive** and **cross-platform** (if applicable) to ensure that your submission will be graded properly.
-- It is also recommended that you work with a **tech-stack** or **build-system** that is **platform-agnostic**. For example: if your project is written in `C++` - which is **platform-dependent**, you may need to ensure that it compiles correctly accross multiple toolchains/compilers for different platforms, thereby creating the added-complexity of having to maintain multiple build-targets - such as having to support both **MSVC for Windows** (using `WIN32` for OS-calls) and **GCC for Linux** (using `POSIX` for OS-calls). However, using a language like `Java` may work much better, since `Java` code is inherently **platform-agnostic** as it runs on a *virtual machine* which abstracts away the lower-level OS-calls.
----
+1. **Quick Setup** (5 minutes):
+   ```bash
+   git clone https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025.git
+   cd Dachsh-Capy-Intervarsity-Hackathon-2025/src/dc-savings
+   npm install && npm run dev
+   ```
 
-### 💡 Note for First-Time Hackathon Participants
-If this is your **first hackathon** or you’re **new to GitHub**, don’t stress — just:  
-1. Use this template repo as-is.  
-2. Fill in the required documentation files (`TEAM.md`, `OVERVIEW.md`, `SETUP.md`, `USAGE.md`, `ACKNOWLEDGEMENTS.md`, `LICENSE`).  
-3. Put your code in the `src/` folder and assets in `assets/`.  
+2. **Explore Features**:
+   - Start with the Dashboard to see savings overview
+   - Check out Challenges for gamification elements  
+   - Visit Leaderboards to see competitive features
+   - Browse the Social Feed for community aspects
+   - Test Profile management and customization
 
-That’s enough for a complete and valid submission 🚀 — the rest (like Docker, tests, extra docs) is **optional polish**.
-
----
-
-## 🧩 Example Submission
-Check out a very basic example submission repository [here](https://github.com/DnA-IntRicate/SAIntervarsityHackathonExampleSubmission2025).
-
-We've also created a **demo video** showcasing the **example submission** and how to get started with this **template repository**, check it out [here](https://youtu.be/e2R9APyatU4).
+3. **Read Documentation**:
+   - [USAGE.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/USAGE.md) for detailed feature walkthrough
+   - [PROJECT_OVERVIEW.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/demo/OVERVIEW.md) for vision and inspiration
 
 ---
 
-## 🙌 Brought to you by
-- [UCT Developer Society](https://www.linkedin.com/company/uct-developers-society)
-- [UCT AI Society](https://www.linkedin.com/company/uctaisociety/)
-- Stellenbosch AI Society
-- [Wits Developer Society](https://www.linkedin.com/company/wits-developer-society/)
-- [UJ Developer Society](https://www.linkedin.com/company/uj-developerss-society/)
-- [UWC IT Society](https://www.linkedin.com/company/uwc-it-society/)
-- [UNISA Developer Society](https://www.linkedin.com/company/unisa-developer-society/)
+## 💡 The Problem We're Solving
 
-![Sponsored by](assets/Sponsors.jpg)
+Traditional savings apps are **boring** and **isolating**. People struggle to maintain saving habits because:
+- ❌ Lack of motivation and accountability
+- ❌ No community support or social connection  
+- ❌ Monotonous, unrewarding experience
+- ❌ No gamification or engagement elements
 
-### **Good luck and happy hacking!** 🚀
+**DC Savings fixes this by making saving social, fun, and rewarding!** 🎉
+
+---
+
+## 🌟 Innovation Highlights
+
+- **🎮 Gamification** - Challenges and achievements make saving fun
+- **👥 Social Features** - Community support and friendly competition  
+- **📊 Visual Progress** - Beautiful charts and real-time tracking
+- **🎉 Celebrations** - Confetti animations for milestone achievements
+- **📱 Modern UX** - Responsive design with smooth interactions
+- **🔧 Scalable Architecture** - Built with modern React best practices
+
+---
+
+## 🎯 Target Audience
+
+- **Young Adults** starting their savings journey
+- **Students** learning financial responsibility  
+- **Professionals** looking to gamify their finances
+- **Communities** wanting to save together
+- **Anyone** who finds traditional savings apps boring!
+
+---
+
+## 📱 Browser Compatibility
+
+- ✅ Chrome (recommended)
+- ✅ Firefox  
+- ✅ Safari
+- ✅ Edge
+
+---
+
+## 🏆 Hackathon Details
+
+- **Event**: Intervarsity Hackathon 2025  
+- **Team**: Dachsh & Ccapy
+-  **Category**: FinTech 
+- **Built with**: React, Tailwind CSS, Vite  
+- **Development Time**: 24 hours  
+
+---
+
+## 🤝 Contributing
+
+This project was built for a hackathon, but we welcome feedback and suggestions!
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+Special thanks to:
+
+### 🎯 Hackathon Organizers & Sponsors
+- **Intervarsity Hackathon 2025** organizers
+- **Diamond Sponsors**: FNB, MWR CyberSec, Impact.com
+- **Gold Sponsors**: Entelect
+- **Additional Sponsors**: SOLIDitech, BSG, Boxfusion
+
+### 💻 Technology & Tools
+- The open-source community for amazing tools and libraries
+- The React, Vite, and Tailwind CSS teams
+- All contributors to the dependencies listed in [ACKNOWLEDGEMENTS.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/ACKNOWLEDGEMENTS.md)
+
+### 🚀 Development Support
+- Hackathon mentors and volunteers
+- Fellow participants for inspiration and collaboration
+
+---
+
+<div align="center">
+
+**Built fo rIntervarsity Hackathon 2025**
+
+
+</div>
