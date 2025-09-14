@@ -62,6 +62,12 @@ const Leaderboard = ({ onBack }) => {
     { month: 'Sep', challenge_king: 1250, savings_pro: 890, you: 520 }
   ];
 
+  const achievements = [
+    { name: 'Top 3 Finisher', description: 'Finished in top 3 this month', icon: '🥉', users: 3 },
+    { name: 'Streak Master', description: '7+ day saving streak', icon: '🔥', users: 8 },
+    { name: 'Goal Crusher', description: 'Exceeded monthly goal', icon: '💥', users: 5 },
+    { name: 'Consistent Saver', description: 'Saved every week', icon: '⭐', users: 12 }
+  ];
 
   const getCurrentUserData = () => {
     const data = categoryFilter === 'all' ? leaderboardData[timeFilter] : categoryData[categoryFilter];
@@ -320,6 +326,55 @@ const Leaderboard = ({ onBack }) => {
                   )}
                 </div>
               )}
+            </div>
+
+            {/* Competition Stats */}
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <h3 className="text-lg font-semibold text-dark-purple mb-4">Competition Stats</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Total Participants:</span>
+                  <span className="font-semibold text-dark-purple">{displayData.length}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Average Savings:</span>
+                  <span className="font-semibold text-dark-purple">
+                    R{Math.round(displayData.reduce((sum, user) => sum + user.saved, 0) / displayData.length)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Top Performer:</span>
+                  <span className="font-semibold text-dark-purple">{displayData[0]?.username}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Your Percentile:</span>
+                  <span className="font-semibold text-light-purple">
+                    {currentUser ? Math.round(((displayData.length - currentUser.rank + 1) / displayData.length) * 100) : 'N/A'}%
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Popular Achievements */}
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <h3 className="text-lg font-semibold text-dark-purple mb-4">Popular Achievements</h3>
+              <div className="space-y-3">
+                {achievements.map((achievement, index) => (
+                  <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-2xl">{achievement.icon}</span>
+                      <div>
+                        <p className="font-medium text-gray-800">{achievement.name}</p>
+                        <p className="text-sm text-gray-600">{achievement.description}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-semibold text-light-purple">{achievement.users}</p>
+                      <p className="text-xs text-gray-500">earners</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

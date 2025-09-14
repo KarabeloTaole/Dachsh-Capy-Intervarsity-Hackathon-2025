@@ -1,31 +1,16 @@
- import React, { useState } from "react";
-
+    import React, { useState } from "react";
+    import { useGlobalState } from './GlobalState';
 export default function ProfilePage({ onLogout }) {
+  const { user, updateUser} = useGlobalState();
   const [activeTab, setActiveTab] = useState('profile');
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   
-  const [userProfile, setUserProfile] = useState({
-    name: "Karabelo Taole",
-    email: "karabelo@email.com",
-    phone: "+27 123 456 789",
-    bio: "Passionate saver working towards financial freedom! 💪",
-    location: "Johannesburg, South Africa",
-    joinDate: "January 2024",
-    avatar: "👤",
-    savings: 1520,
-    goal: 2500,
-    rank: 3,
-    friends: 12,
-  });
 
-  const progress = (userProfile.savings / userProfile.goal) * 100;
+  const progress = Math.round((user.savings.current / user.savings.goal) * 100);
 
   const handleProfileUpdate = (field, value) => {
-    setUserProfile(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    updateUser({ [field]: value });
   };
 
   const tabs = [
@@ -92,17 +77,17 @@ export default function ProfilePage({ onLogout }) {
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-6">
                     <div className="text-6xl bg-lightPurple rounded-full w-20 h-20 flex items-center justify-center">
-                      {userProfile.avatar}
+                      {user.avatar}
                     </div>
                     <div>
                       <h2 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
-                        {userProfile.name}
+                        {user.name}
                       </h2>
                       <p className={`${darkMode ? 'text-gray-300' : 'text-lightPurple'} font-medium`}>
-                        Member since {userProfile.joinDate}
+                        Member since {user.joinDate}
                       </p>
                       <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-sm`}>
-                        Rank #{userProfile.rank} • {userProfile.friends} friends
+                        Rank #{user.rank.weekly.rank} • {user.friends} friends
                       </p>
                     </div>
                   </div>
@@ -126,7 +111,7 @@ export default function ProfilePage({ onLogout }) {
                     ></div>
                   </div>
                   <p className={`text-xs mt-1 ${darkMode ? 'text-gray-300' : 'text-darkBlue'}`}>
-                    R{userProfile.savings} / R{userProfile.goal}
+                    R{user.savings.current} / R{user.savings.goal}
                   </p>
                 </div>
               </div>
@@ -140,10 +125,10 @@ export default function ProfilePage({ onLogout }) {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[
-                    { label: 'Full Name', field: 'name', value: userProfile.name },
-                    { label: 'Email', field: 'email', value: userProfile.email },
-                    { label: 'Phone', field: 'phone', value: userProfile.phone },
-                    { label: 'Location', field: 'location', value: userProfile.location }
+                    { label: 'Full Name', field: 'name', value: user.name },
+                    { label: 'Email', field: 'email', value: user.email },
+                    { label: 'Phone', field: 'phone', value: user.phone },
+                    { label: 'Location', field: 'location', value: user.location }
                   ].map((item) => (
                     <div key={item.field}>
                       <label className={`block text-sm font-medium mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
@@ -175,7 +160,7 @@ export default function ProfilePage({ onLogout }) {
                   </label>
                   {isEditing ? (
                     <textarea
-                      value={userProfile.bio}
+                      value={user.bio}
                       onChange={(e) => handleProfileUpdate('bio', e.target.value)}
                       className={`w-full p-3 rounded-xl border-2 focus:border-lightPurple focus:outline-none transition-all h-24 ${
                         darkMode 
@@ -185,7 +170,7 @@ export default function ProfilePage({ onLogout }) {
                     />
                   ) : (
                     <p className={`p-3 rounded-xl ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-darkBlue'}`}>
-                      {userProfile.bio}
+                      {user.bio}
                     </p>
                   )}
                 </div>
@@ -199,33 +184,6 @@ export default function ProfilePage({ onLogout }) {
               <div className={`rounded-3xl p-8 border-2 shadow-xl transition-all duration-300 ${
                 darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-100'
               }`}>
-                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
-                  App Settings
-                </h3>
-                
-                <div className="space-y-6">
-                  {/* Dark Mode Toggle */}
-                  <div className="flex items-center justify-between p-4 rounded-xl bg-lightPurple/10">
-                    <div>
-                      <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
-                        🌙 Dark Mode
-                      </h4>
-                      <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                        Toggle between light and dark themes
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setDarkMode(!darkMode)}
-                      className={`w-14 h-8 rounded-full transition-all duration-300 ${
-                        darkMode ? 'bg-lightPurple' : 'bg-gray-300'
-                      }`}
-                    >
-                      <div className={`w-6 h-6 bg-white rounded-full transition-all duration-300 ${
-                        darkMode ? 'translate-x-7' : 'translate-x-1'
-                      }`}></div>
-                    </button>
-                  </div>
-                </div>
               </div>
             </div>
           )}
@@ -234,10 +192,10 @@ export default function ProfilePage({ onLogout }) {
             <div className="space-y-6 animate-slideUp">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { label: 'Total Saved', value: `R${userProfile.savings}`, icon: '💰' },
+                  { label: 'Total Saved', value: `R${user.savings.current}`, icon: '💰' },
                   { label: 'Days Active', value: '245', icon: '📅' },
                   { label: 'Goal Progress', value: `${Math.round(progress)}%`, icon: '🎯' },
-                  { label: 'Friends', value: userProfile.friends, icon: '👥' }
+                  { label: 'Friends', value: user.friends, icon: '👥' }
                 ].map((stat, i) => (
                   <div key={i} className={`rounded-3xl p-6 border-2 shadow-xl transition-all duration-300 hover:shadow-2xl ${
                     darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-100'
