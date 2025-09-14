@@ -1,6 +1,6 @@
-    import React, { useState } from "react";
-    import { useGlobalState } from './GlobalState';
-export default function ProfilePage({ onLogout }) {
+import React, { useState } from "react";
+import { useGlobalState } from './GlobalState';
+export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
   const { user, updateUser} = useGlobalState();
   const [activeTab, setActiveTab] = useState('profile');
   const [darkMode] = useState(false);
@@ -212,6 +212,12 @@ export default function ProfilePage({ onLogout }) {
                   </div>
                 ))}
               </div>
+              <button
+  onClick={onNavigateToLeaderboard}
+  className="bg-lightPurple hover:bg-purple text-white px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105"
+>
+  🏆 View Leaderboard
+</button>
             </div>
           )}
 

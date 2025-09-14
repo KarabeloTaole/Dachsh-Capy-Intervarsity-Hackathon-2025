@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -32,7 +32,6 @@ const Login = () => {
 
     setIsLoading(true);
 
-    // Mock login process
     setTimeout(() => {
       localStorage.setItem('currentUser', JSON.stringify({
         username: formData.username,
@@ -42,6 +41,9 @@ const Login = () => {
 
       alert(`Welcome back, ${formData.username}! You have successfully logged in.`);
       setIsLoading(false);
+      
+      // Navigate to profile page
+      onLogin();
     }, 2000);
   };
 
@@ -134,24 +136,10 @@ const Login = () => {
                 <div className="flex gap-2 justify-center flex-wrap">
                   <button 
                     type="button" 
-                    onClick={() => fillDemo('alex_saver', 'demo123')} 
+                    onClick={() => fillDemo('Karabelo', 'demo123')} 
                     className="px-4 py-2 bg-purple text-white rounded-full text-xs hover:bg-dark-purple transition-all duration-300 transform hover:scale-110 hover:shadow-md"
                   >
-                    Alex (Beginner)
-                  </button>
-                  <button 
-                    type="button" 
-                    onClick={() => fillDemo('savings_pro', 'demo123')} 
-                    className="px-4 py-2 bg-yellow text-dark-purple rounded-full text-xs hover:bg-purple hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-md"
-                  >
-                    Pro Saver
-                  </button>
-                  <button 
-                    type="button" 
-                    onClick={() => fillDemo('challenge_king', 'demo123')} 
-                    className="px-4 py-2 bg-light-purple text-white rounded-full text-xs hover:bg-yellow hover:text-dark-purple transition-all duration-300 transform hover:scale-110 hover:shadow-md"
-                  >
-                    Savings King
+                    Demo
                   </button>
                 </div>
               </div>
