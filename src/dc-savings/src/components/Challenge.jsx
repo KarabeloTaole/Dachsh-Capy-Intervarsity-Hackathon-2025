@@ -1,14 +1,17 @@
 //this is our challenge screen where users can keep track of their challenge progress
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
-const ChallengeDetail = ({ challengeId, onBack }) => {
+const ChallengeDetail = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
     const [newProgress, setNewProgress] = useState(''); //these states will help me manage user input and progress notes
   const [progressNote, setProgressNote] = useState('');
 
   // Mock challenge data - provided by Claude as stated in our read me
   const challengeData = {
-    id: challengeId || 'challenge_001',
+    id: id || 'challenge_001',
     title: 'September Savings Sprint',
     description: 'Save R500 in September and compete with friends!',
     target: 500,
@@ -58,14 +61,14 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
   const currentUser = participants.find(p => p.isCurrentUser);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-libre">
+    <div className="min-h-screen bg-gray-50 font-libre main-content">
       {/* Header */}
       <div className="bg-white shadow-md border-b-4 border-light-purple">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button 
-                onClick={onBack}
+                onClick={() => navigate('/dashboard')}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300"
               >
                 <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -73,7 +76,7 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
                 </svg>
               </button>
               <div>
-                <h1 className="text-2xl font-bold text-dark-purple">{challengeData.title}</h1>
+                <h1 className="text-2xl font-bold text-dark-blue">{challengeData.title}</h1>
                 <p className="text-sm text-purple">{challengeData.description}</p>
               </div>
             </div>
@@ -112,13 +115,13 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
 
               {/* Prize Section */}
               <div className="bg-gradient-to-r from-yellow/20 to-yellow/10 p-4 rounded-lg mb-6">
-                <h3 className="font-semibold text-dark-purple mb-2">🏆 Challenge Prize</h3>
+                <h3 className="font-semibold text-dark-blue mb-2">🏆 Challenge Prize</h3>
                 <p className="text-gray-700">{challengeData.prize}</p>
               </div>
 
               {/* Your Progress */}
               <div className="mb-6">
-                <h3 className="text-lg font-semibold text-dark-purple mb-3">Your Challenge Progress</h3>
+                <h3 className="text-lg font-semibold text-dark-blue mb-3">Your Challenge Progress</h3>
                 <div className="bg-gray-100 rounded-full h-6 mb-2">
                   <div 
                     className="bg-gradient-to-r from-light-purple to-purple h-6 rounded-full transition-all duration-500 flex items-center justify-end pr-4"
@@ -135,7 +138,7 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
 
               {/* Add Progress Form */}
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-dark-purple mb-4">Update Your Progress</h3>
+                <h3 className="text-lg font-semibold text-dark-blue mb-4">Update Your Progress</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Amount Saved ($)</label>
@@ -169,7 +172,7 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
 
             {/* Progress Comparison Chart */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold text-dark-purple mb-4">Progress Comparison</h3>
+              <h3 className="text-xl font-semibold text-dark-blue mb-4">Progress Comparison</h3>
               <ResponsiveContainer width="100%" height={400}>
                 <LineChart data={progressHistory}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -185,7 +188,7 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
 
             {/* Recent Activity */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold text-dark-purple mb-4">Recent Challenge Activity</h3>
+              <h3 className="text-xl font-semibold text-dark-blue mb-4">Recent Challenge Activity</h3>
               <div className="space-y-3">
                 {dailyActivity.map((activity, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
@@ -209,7 +212,7 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
           <div className="space-y-6">
             {/* Participants Leaderboard */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Challenge Leaderboard</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Challenge Leaderboard</h3>
               <div className="space-y-3">
                 {participants.map((participant) => (
                   <div 
@@ -231,7 +234,7 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className="font-semibold text-dark-purple">${participant.progress}</p>
+                        <p className="font-semibold text-dark-blue">${participant.progress}</p>
                         <p className="text-sm text-green-600">{participant.trend}</p>
                       </div>
                     </div>
@@ -248,23 +251,23 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
 
             {/* Challenge Info */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Challenge Details</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Challenge Details</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Creator:</span>
-                  <span className="font-medium text-dark-purple">{challengeData.creator}</span>
+                  <span className="font-medium text-dark-blue">{challengeData.creator}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Start Date:</span>
-                  <span className="font-medium text-dark-purple">{challengeData.startDate}</span>
+                  <span className="font-medium text-dark-blue">{challengeData.startDate}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">End Date:</span>
-                  <span className="font-medium text-dark-purple">{challengeData.endDate}</span>
+                  <span className="font-medium text-dark-blue">{challengeData.endDate}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Duration:</span>
-                  <span className="font-medium text-dark-purple">{challengeData.duration} days</span>
+                  <span className="font-medium text-dark-blue">{challengeData.duration} days</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Status:</span>
@@ -275,12 +278,12 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
 
             {/* Quick Actions */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Quick Actions</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <button className="w-full bg-light-purple hover:bg-purple text-white font-semibold py-3 rounded-lg transition-all duration-300">
                   Share Challenge
                 </button>
-                <button className="w-full bg-yellow hover:bg-yellow/80 text-dark-purple font-semibold py-3 rounded-lg transition-all duration-300">
+                <button className="w-full bg-yellow hover:bg-yellow/80 text-dark-blue font-semibold py-3 rounded-lg transition-all duration-300">
                   Invite Friends
                 </button>
                 <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 rounded-lg transition-all duration-300">
@@ -293,6 +296,6 @@ const ChallengeDetail = ({ challengeId, onBack }) => {
       </div>
     </div>
   );
-
-
 };
+
+export default ChallengeDetail;

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGlobalState } from './GlobalState';
-export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
+
+export default function ProfilePage() {
+  const navigate = useNavigate();
   const { user, updateUser} = useGlobalState();
   const [activeTab, setActiveTab] = useState('profile');
   const [darkMode] = useState(false);
@@ -20,15 +23,15 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
   ];
 
   return (
-    <div className={`min-h-screen font-libre relative overflow-hidden transition-all duration-500 ${
+    <div className={`min-h-screen font-libre relative overflow-hidden transition-all duration-500 main-content ${
       darkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
       {/* Floating decorative circles */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-16 h-16 bg-lightPurple rounded-full animate-bounce opacity-20"></div>
+        <div className="absolute top-20 left-10 w-16 h-16 bg-light-purple rounded-full animate-bounce opacity-20"></div>
         <div className="absolute top-32 right-16 w-12 h-12 bg-yellow rounded-full animate-pulse opacity-30"></div>
         <div className="absolute bottom-40 left-20 w-20 h-20 bg-purple rounded-full animate-ping opacity-10"></div>
-        <div className="absolute bottom-20 right-32 w-8 h-8 bg-lightPurple rounded-full animate-bounce opacity-25"></div>
+        <div className="absolute bottom-20 right-32 w-8 h-8 bg-light-purple rounded-full animate-bounce opacity-25"></div>
       </div>
 
       {/* Main Profile Content */}
@@ -37,7 +40,7 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
           
           {/* Header */}
           <div className="text-center mb-8 animate-fadeIn">
-            <h1 className={`text-5xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+            <h1 className={`text-5xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-dark-blue'}`}>
               Profile Management
             </h1>
             <p className={`text-lg ${darkMode ? 'text-gray-300' : 'text-lightPurple'}`}>
@@ -54,10 +57,10 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
                     activeTab === tab.id
-                      ? 'bg-lightPurple text-white shadow-lg transform scale-105'
+                      ? 'bg-light-purple text-white shadow-lg transform scale-105'
                       : darkMode 
                         ? 'text-gray-300 hover:text-white hover:bg-gray-700'
-                        : 'text-gray-600 hover:text-darkBlue hover:bg-gray-200'
+                        : 'text-gray-600 hover:text-dark-blue hover:bg-gray-200'
                   }`}
                 >
                   <span className="mr-2">{tab.icon}</span>
@@ -76,11 +79,11 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
               }`}>
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-6">
-                    <div className="text-6xl bg-lightPurple rounded-full w-20 h-20 flex items-center justify-center">
+                    <div className="text-6xl bg-light-purple rounded-full w-20 h-20 flex items-center justify-center">
                       {user.avatar}
                     </div>
                     <div>
-                      <h2 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+                      <h2 className={`text-3xl font-bold ${darkMode ? 'text-white' : 'text-dark-blue'}`}>
                         {user.name}
                       </h2>
                       <p className={`${darkMode ? 'text-gray-300' : 'text-lightPurple'} font-medium`}>
@@ -93,7 +96,7 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
                   </div>
                   <button
                     onClick={() => setIsEditing(!isEditing)}
-                    className="bg-yellow hover:bg-purple hover:text-white text-darkBlue px-6 py-2 rounded-xl font-bold transition-all transform hover:scale-105"
+                    className="bg-yellow hover:bg-purple hover:text-white text-dark-blue px-6 py-2 rounded-xl font-bold transition-all transform hover:scale-105"
                   >
                     {isEditing ? '💾 Save' : '✏️ Edit'}
                   </button>
@@ -101,7 +104,7 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
 
                 {/* Progress Bar */}
                 <div className="mb-6">
-                  <p className={`text-sm mb-2 font-medium ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+                  <p className={`text-sm mb-2 font-medium ${darkMode ? 'text-white' : 'text-dark-blue'}`}>
                     Savings Progress
                   </p>
                   <div className={`w-full rounded-full h-4 ${darkMode ? 'bg-gray-700' : 'bg-darkBlue/20'}`}>
@@ -110,7 +113,7 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
                       style={{ width: `${progress}%` }}
                     ></div>
                   </div>
-                  <p className={`text-xs mt-1 ${darkMode ? 'text-gray-300' : 'text-darkBlue'}`}>
+                  <p className={`text-xs mt-1 ${darkMode ? 'text-gray-300' : 'text-dark-blue'}`}>
                     R{user.savings.current} / R{user.savings.goal}
                   </p>
                 </div>
@@ -120,7 +123,7 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
               <div className={`rounded-3xl p-8 border-2 shadow-xl transition-all duration-300 ${
                 darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-100'
               }`}>
-                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+                <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-dark-blue'}`}>
                   Personal Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -142,11 +145,11 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
                           className={`w-full p-3 rounded-xl border-2 focus:border-lightPurple focus:outline-none transition-all ${
                             darkMode 
                               ? 'bg-gray-700 border-gray-600 text-white' 
-                              : 'bg-white border-gray-200 text-darkBlue'
+                              : 'bg-white border-gray-200 text-dark-blue'
                           }`}
                         />
                       ) : (
-                        <p className={`p-3 rounded-xl ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-darkBlue'}`}>
+                        <p className={`p-3 rounded-xl ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-dark-blue'}`}>
                           {item.value}
                         </p>
                       )}
@@ -165,11 +168,11 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
                       className={`w-full p-3 rounded-xl border-2 focus:border-lightPurple focus:outline-none transition-all h-24 ${
                         darkMode 
                           ? 'bg-gray-700 border-gray-600 text-white' 
-                          : 'bg-white border-gray-200 text-darkBlue'
+                          : 'bg-white border-gray-200 text-dark-blue'
                       }`}
                     />
                   ) : (
-                    <p className={`p-3 rounded-xl ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-darkBlue'}`}>
+                    <p className={`p-3 rounded-xl ${darkMode ? 'bg-gray-700 text-white' : 'bg-white text-dark-blue'}`}>
                       {user.bio}
                     </p>
                   )}
@@ -202,7 +205,7 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
                   }`}>
                     <div className="text-center">
                       <div className="text-4xl mb-2">{stat.icon}</div>
-                      <h4 className={`font-bold text-2xl ${darkMode ? 'text-white' : 'text-darkBlue'}`}>
+                      <h4 className={`font-bold text-2xl ${darkMode ? 'text-white' : 'text-dark-blue'}`}>
                         {stat.value}
                       </h4>
                       <p className={`${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
@@ -213,8 +216,8 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
                 ))}
               </div>
               <button
-  onClick={onNavigateToLeaderboard}
-  className="bg-lightPurple hover:bg-purple text-white px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105"
+  onClick={() => navigate('/leaderboard')}
+  className="bg-light-purple hover:bg-purple text-white px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105"
 >
   🏆 View Leaderboard
 </button>
@@ -224,7 +227,7 @@ export default function ProfilePage({ onLogout , onNavigateToLeaderboard}) {
           {/* Logout Button */}
           <div className="text-center">
             <button
-              onClick={onLogout}
+              onClick={() => navigate('/login')}
               className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 mr-4"
             >
               🚪 Log Out

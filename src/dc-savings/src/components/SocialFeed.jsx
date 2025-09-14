@@ -1,7 +1,9 @@
 //this is the social feed where users can interact with eachh other
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const SocialFeed = ({ onBack }) => {
+const SocialFeed = () => {
+  const navigate = useNavigate();
   const [newPost, setNewPost] = useState(''); // the useState for posts
   const [filter, setFilter] = useState('all');
   const [showCommentBox, setShowCommentBox] = useState(null);
@@ -197,14 +199,14 @@ const handlePost = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 font-libre">
+    <div className="min-h-screen bg-gray-50 font-libre main-content">
       {/* Header */}
       <div className="bg-white shadow-md border-b-4 border-light-purple">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button 
-                onClick={onBack}
+                onClick={() => navigate('/dashboard')}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300"
               >
                 <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -212,7 +214,7 @@ const handlePost = () => {
                 </svg>
               </button>
               <div>
-                <h1 className="text-2xl font-bold text-dark-purple">Social Feed 🌟</h1>
+                <h1 className="text-2xl font-bold text-dark-blue">Social Feed 🌟</h1>
                 <p className="text-sm text-purple">See what your saving friends are up to</p>
               </div>
             </div>
@@ -232,7 +234,7 @@ const handlePost = () => {
           <div className="xl:col-span-3 space-y-6">
             {/* Create Post */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Share Your Progress 📝</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Share Your Progress 📝</h3>
               <div className="flex space-x-4">
                 <div className="w-12 h-12 bg-light-purple rounded-full flex items-center justify-center">
                   <span className="text-xl">🎯</span>
@@ -431,7 +433,7 @@ const handlePost = () => {
           <div className="space-y-6">
             {/* Online Friends */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Friends Online</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Friends Online</h3>
               <div className="space-y-3">
                 {friends.map((friend, index) => (
                   <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors duration-300">
@@ -465,7 +467,7 @@ const handlePost = () => {
 
             {/* Trending Challenges */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Trending Challenges 🔥</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Trending Challenges 🔥</h3>
               <div className="space-y-3">
                 {trendingChallenges.map((challenge, index) => (
                   <div key={index} className="p-3 bg-gray-50 rounded-lg">
@@ -484,7 +486,7 @@ const handlePost = () => {
 
             {/* Weekly Highlights */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">This Week's Highlights ✨</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">This Week's Highlights ✨</h3>
               <div className="space-y-4">
                 <div className="text-center p-4 bg-yellow/10 rounded-lg">
                   <div className="text-2xl mb-2">🏆</div>
@@ -511,12 +513,12 @@ const handlePost = () => {
 
             {/* Quick Actions */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Quick Actions</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <button className="w-full bg-light-purple hover:bg-purple text-white font-semibold py-3 rounded-lg transition-all duration-300">
                   Create Challenge
                 </button>
-                <button className="w-full bg-yellow hover:bg-yellow/80 text-dark-purple font-semibold py-3 rounded-lg transition-all duration-300">
+                <button className="w-full bg-yellow hover:bg-yellow/80 text-dark-blue font-semibold py-3 rounded-lg transition-all duration-300">
                   Invite Friends
                 </button>
                 <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 rounded-lg transition-all duration-300">
@@ -527,11 +529,11 @@ const handlePost = () => {
 
             {/* Community Stats */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Community Stats 📊</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Community Stats 📊</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Total Members:</span>
-                  <span className="font-semibold text-dark-purple">1,247</span>
+                  <span className="font-semibold text-dark-blue">1,247</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Active Challenges:</span>

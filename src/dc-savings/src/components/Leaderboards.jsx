@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { useGlobalState } from './GlobalState';
-const Leaderboard = ({ onBack }) => {
+
+const Leaderboard = () => {
+  const navigate = useNavigate();
   const { user } = useGlobalState();
   const [timeFilter, setTimeFilter] = useState('monthly');
   const [categoryFilter, setCategoryFilter] = useState('all');
@@ -117,14 +120,14 @@ const Leaderboard = ({ onBack }) => {
   const displayData = categoryFilter === 'all' ? leaderboardData[timeFilter] : categoryData[categoryFilter];
 
   return (
-    <div className="min-h-screen bg-gray-50 font-libre">
+    <div className="min-h-screen bg-gray-50 font-libre main-content">
       {/* Header */}
       <div className="bg-white shadow-md border-b-4 border-light-purple">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button 
-                onClick={onBack}
+                onClick={() => navigate('/dashboard')}
                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-300"
               >
                 <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,7 +135,7 @@ const Leaderboard = ({ onBack }) => {
                 </svg>
               </button>
               <div>
-                <h1 className="text-2xl font-bold text-dark-purple">Leaderboard 🏆</h1>
+                <h1 className="text-2xl font-bold text-dark-blue">Leaderboard 🏆</h1>
                 <p className="text-sm text-purple">See how you stack up against other savers</p>
               </div>
             </div>
@@ -152,7 +155,7 @@ const Leaderboard = ({ onBack }) => {
             <div className="bg-white p-6 rounded-xl shadow-lg">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div>
-                  <h3 className="text-lg font-semibold text-dark-purple mb-2">Filter Rankings</h3>
+                  <h3 className="text-lg font-semibold text-dark-blue mb-2">Filter Rankings</h3>
                   <div className="flex flex-wrap gap-2">
                     <button 
                       onClick={() => setTimeFilter('weekly')}
@@ -187,7 +190,7 @@ const Leaderboard = ({ onBack }) => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-md font-medium text-dark-purple mb-2">Category</h4>
+                  <h4 className="text-md font-medium text-dark-blue mb-2">Category</h4>
                   <select 
                     value={categoryFilter}
                     onChange={(e) => setCategoryFilter(e.target.value)}
@@ -204,7 +207,7 @@ const Leaderboard = ({ onBack }) => {
 
             {/* Top 3 Podium */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold text-dark-purple mb-6">Top Performers</h3>
+              <h3 className="text-xl font-semibold text-dark-blue mb-6">Top Performers</h3>
               <div className="flex justify-center items-end space-x-8">
                 {/* 2nd Place */}
                 {displayData[1] && (
@@ -227,9 +230,9 @@ const Leaderboard = ({ onBack }) => {
                       <span className="text-4xl">{displayData[0].badge}</span>
                     </div>
                     <div className="bg-yellow px-6 py-4 rounded-b-lg">
-                      <p className="font-bold text-dark-purple">{displayData[0].username}</p>
-                      <p className="text-xl font-bold text-dark-purple">R{displayData[0].saved}</p>
-                      <p className="text-sm text-dark-purple">#1</p>
+                      <p className="font-bold text-dark-blue">{displayData[0].username}</p>
+                      <p className="text-xl font-bold text-dark-blue">R{displayData[0].saved}</p>
+                      <p className="text-sm text-dark-blue">#1</p>
                     </div>
                   </div>
                 )}
@@ -252,7 +255,7 @@ const Leaderboard = ({ onBack }) => {
 
             {/* Full Rankings */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold text-dark-purple mb-4">Complete Rankings</h3>
+              <h3 className="text-xl font-semibold text-dark-blue mb-4">Complete Rankings</h3>
               <div className="space-y-2">
                 {displayData.map((user, index) => (
                   <div 
@@ -265,7 +268,7 @@ const Leaderboard = ({ onBack }) => {
                   >
                     <div className="flex items-center space-x-4">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${
-                        user.rank === 1 ? 'bg-yellow text-dark-purple' :
+                        user.rank === 1 ? 'bg-yellow text-dark-blue' :
                         user.rank === 2 ? 'bg-gray-400' :
                         user.rank === 3 ? 'bg-orange-400' :
                         'bg-gray-300 text-gray-700'
@@ -287,7 +290,7 @@ const Leaderboard = ({ onBack }) => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xl font-bold text-dark-purple">R{user.saved}</p>
+                      <p className="text-xl font-bold text-dark-blue">R{user.saved}</p>
                       <div className="flex items-center space-x-2">
                         {user.change && user.change !== '0' && (
                           <span className={`text-sm font-medium ${
@@ -307,7 +310,7 @@ const Leaderboard = ({ onBack }) => {
 
             {/* Trends Chart */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold text-dark-purple mb-4">Savings Trends Over Time</h3>
+              <h3 className="text-xl font-semibold text-dark-blue mb-4">Savings Trends Over Time</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={trendData}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -323,7 +326,7 @@ const Leaderboard = ({ onBack }) => {
 
             {/* Top Performers by Category */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold text-dark-purple mb-4">Performance Comparison</h3>
+              <h3 className="text-xl font-semibold text-dark-blue mb-4">Performance Comparison</h3>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={displayData.slice(0, 8)}>
                   <CartesianGrid strokeDasharray="3 3" />
@@ -340,13 +343,13 @@ const Leaderboard = ({ onBack }) => {
           <div className="space-y-6">
             {/* Your Position Card */}
             <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-light-purple">
-              <h3 className="text-lg font-semibold text-dark-purple mb-3">Your Position</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-3">Your Position</h3>
               {currentUser && (
                 <div className="text-center">
                   <div className="w-16 h-16 bg-light-purple rounded-full flex items-center justify-center mx-auto mb-3">
                     <span className="text-2xl">{currentUser.badge}</span>
                   </div>
-                  <p className="text-2xl font-bold text-dark-purple">Rank #{currentUser.rank}</p>
+                  <p className="text-2xl font-bold text-dark-blue">Rank #{currentUser.rank}</p>
                   <p className="text-lg font-semibold text-light-purple">R{currentUser.saved} saved</p>
                   <div className="mt-3 p-3 bg-light-purple/10 rounded-lg">
                     <p className="text-sm font-medium text-purple">{currentUser.level} Level</p>
@@ -369,21 +372,21 @@ const Leaderboard = ({ onBack }) => {
 
             {/* Competition Stats */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Competition Stats</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Competition Stats</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Total Participants:</span>
-                  <span className="font-semibold text-dark-purple">{displayData.length}</span>
+                  <span className="font-semibold text-dark-blue">{displayData.length}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Average Savings:</span>
-                  <span className="font-semibold text-dark-purple">
+                  <span className="font-semibold text-dark-blue">
                     R{Math.round(displayData.reduce((sum, user) => sum + user.saved, 0) / displayData.length)}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Top Performer:</span>
-                  <span className="font-semibold text-dark-purple">{displayData[0]?.username}</span>
+                  <span className="font-semibold text-dark-blue">{displayData[0]?.username}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Your Percentile:</span>
@@ -396,7 +399,7 @@ const Leaderboard = ({ onBack }) => {
 
             {/* Popular Achievements */}
             <div className="bg-white p-6 rounded-xl shadow-lg">
-              <h3 className="text-lg font-semibold text-dark-purple mb-4">Popular Achievements</h3>
+              <h3 className="text-lg font-semibold text-dark-blue mb-4">Popular Achievements</h3>
               <div className="space-y-3">
                 {achievements.map((achievement, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">

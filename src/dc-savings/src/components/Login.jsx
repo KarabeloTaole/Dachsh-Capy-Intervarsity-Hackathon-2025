@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useGlobalState } from './GlobalState';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalState } from './GlobalState';
 
-const Login = ({ onLogin }) => {
-    const global = useGlobalState();
+const Login = () => {
+  const navigate = useNavigate();
+  const { updateUser } = useGlobalState();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -36,6 +37,15 @@ const Login = ({ onLogin }) => {
     setIsLoading(true);
 
     setTimeout(() => {
+      // Update global state with user info
+      updateUser({
+        username: formData.username,
+        name: formData.username === 'Karabelo' ? 'Karabelo' : formData.username,
+        email: `${formData.username}@email.com`,
+        loginStatus: true,
+        loginTime: Date.now()
+      });
+
       localStorage.setItem('currentUser', JSON.stringify({
         username: formData.username,
         loginStatus: true,
@@ -45,8 +55,7 @@ const Login = ({ onLogin }) => {
       alert(`Welcome back, ${formData.username}! You have successfully logged in.`);
       setIsLoading(false);
       
-      // Navigate to dashboard page
-      onLogin();
+      // Navigate to dashboard
       navigate('/dashboard');
     }, 2000);
   };
@@ -71,7 +80,7 @@ const Login = ({ onLogin }) => {
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
             </div>
-            <h1 className="text-5xl font-bold text-dark-purple mb-2 animate-fadeIn">DC SAVINGS</h1>
+            <h1 className="text-5xl font-bold text-dark-blue mb-2 animate-fadeIn">DC SAVINGS</h1>
             <p className="text-purple text-lg animate-slideUp">Save smart. Challenge Friends. Live better.</p>
           </div>
 
@@ -80,13 +89,13 @@ const Login = ({ onLogin }) => {
             <div className="space-y-6">
               {/* Username Field */}
               <div className="transform transition-all duration-300 hover:translate-x-1">
-                <label className="block text-sm font-semibold text-dark-purple mb-2">Username</label>
+                <label className="block text-sm font-semibold text-dark-blue mb-2">Username</label>
                 <input 
                   type="text" 
                   name="username"
                   value={formData.username}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-4 bg-white border-2 border-gray-200 rounded-xl text-dark-purple placeholder-gray-400 focus:outline-none focus:border-light-purple focus:ring-4 focus:ring-light-purple/20 transition-all duration-300 transform hover:scale-[1.02]"
+                  className="w-full px-4 py-4 bg-white border-2 border-gray-200 rounded-xl text-dark-blue placeholder-gray-400 focus:outline-none focus:border-light-purple focus:ring-4 focus:ring-light-purple/20 transition-all duration-300 transform hover:scale-[1.02]"
                   placeholder="Enter your username"
                   required
                 />
@@ -94,13 +103,13 @@ const Login = ({ onLogin }) => {
 
               {/* Password Field */}
               <div className="transform transition-all duration-300 hover:translate-x-1">
-                <label className="block text-sm font-semibold text-dark-purple mb-2">Password</label>
+                <label className="block text-sm font-semibold text-dark-blue mb-2">Password</label>
                 <input 
                   type="password" 
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-4 bg-white border-2 border-gray-200 rounded-xl text-dark-purple placeholder-gray-400 focus:outline-none focus:border-light-purple focus:ring-4 focus:ring-light-purple/20 transition-all duration-300 transform hover:scale-[1.02]"
+                  className="w-full px-4 py-4 bg-white border-2 border-gray-200 rounded-xl text-dark-blue placeholder-gray-400 focus:outline-none focus:border-light-purple focus:ring-4 focus:ring-light-purple/20 transition-all duration-300 transform hover:scale-[1.02]"
                   placeholder="Enter your password"
                   required
                 />
@@ -172,7 +181,7 @@ const Login = ({ onLogin }) => {
             </div>
             <div className="text-center transform hover:scale-110 transition-all duration-300 cursor-pointer group">
               <div className="w-14 h-14 bg-yellow rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-light-purple transition-colors duration-300 animate-pulse" style={{ animationDelay: '0.5s' }}>
-                <svg className="w-7 h-7 text-dark-purple group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-7 h-7 text-dark-blue group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
@@ -190,7 +199,7 @@ const Login = ({ onLogin }) => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(-20px); }
           to { opacity: 1; transform: translateY(0); }
