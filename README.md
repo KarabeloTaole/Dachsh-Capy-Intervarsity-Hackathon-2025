@@ -9,7 +9,7 @@
 > **Transform your savings journey into an engaging, social experience with challenges, leaderboards, and community support!**
 
 ---
-###Meet  the team
+### Meet  the team
 
  | Name | Links |
 |----------------|------|
