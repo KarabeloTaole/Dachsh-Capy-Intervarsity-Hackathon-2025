@@ -152,9 +152,7 @@ Dachsh-Capy-Intervarsity-Hackathon-2025/
 ## 🎥 Demo & Presentation
 
 - **📺 [Demo Video](https://drive.google.com/file/d/1Tik-DqCu7cUZSxU-jRFhUMfXPR5tU58r/view?usp=sharing)** - Full application walkthrough
-- **📊 [Presentation](demo/demo.pptx)** - Project overview and highlights
-
-*Note: Demo files should be placed in the `demo/` directory*
+- **📊 [Presentation](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/demo/Hackathon%20presentation.pdf)** - Project overview and highlights
 
 ---
 
@@ -272,7 +270,7 @@ Special thanks to:
 ### 💻 Technology & Tools
 - The open-source community for amazing tools and libraries
 - The React, Vite, and Tailwind CSS teams
-- All contributors to the dependencies listed in [ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md)
+- All contributors to the dependencies listed in [ACKNOWLEDGEMENTS.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/ACKNOWLEDGEMENTS.md)
 
 ### 🚀 Development Support
 - Hackathon mentors and volunteers
