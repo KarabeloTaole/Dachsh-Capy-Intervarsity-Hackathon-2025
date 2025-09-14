@@ -1,9 +1,11 @@
 //this is the social feed where users can interact with eachh other
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useGlobalState } from './GlobalState';
 
 const SocialFeed = () => {
   const navigate = useNavigate();
+  const { user } = useGlobalState();
   const [newPost, setNewPost] = useState(''); // the useState for posts
   const [filter, setFilter] = useState('all');
   const [showCommentBox, setShowCommentBox] = useState(null);
@@ -59,7 +61,7 @@ const SocialFeed = () => {
       comments: [
         { user: 'challenge_king', text: 'Welcome to the R500 club! 🎊', time: '5 hours ago' },
         { user: 'coin_collector', text: 'First of many! Keep it up!', time: '4 hours ago' },
-        { user: 'penny_saver', text: 'So motivating! I\'m at $300 now 💪', time: '3 hours ago' }
+        { user: 'penny_saver', text: 'So motivating! I\'m at R300 now 💪', time: '3 hours ago' }
       ],
       liked: false
     },
@@ -76,7 +78,7 @@ const SocialFeed = () => {
       likes: 6,
       comments: [],
       liked: false,
-      description: 'Who wants to join me in investing $200 this month? Let\'s grow our money! 📈'
+      description: 'Who wants to join me in investing R200 this month? Let\'s grow our money! 📈'
     },
     {
       id: 5,
@@ -116,8 +118,6 @@ const SocialFeed = () => {
     }
   ];
 
-  const [feed, setFeed] = useState(feedData);
-
   const friends = [
     { username: 'challenge_king', avatar: '👑', status: 'online', streak: 28 },
     { username: 'savings_pro', avatar: '⭐', status: 'online', streak: 15 },
@@ -130,15 +130,15 @@ const SocialFeed = () => {
     { name: 'October Investment Challenge', participants: 15, prize: 'R100 bonus' },
     { name: 'No-Spend November', participants: 23, prize: 'Gold Badge' },
     { name: 'Emergency Fund Sprint', participants: 8, prize: 'R50 bonus' }
-    ];
+  ];
 
-};
+  const [feed, setFeed] = useState(feedData);
 
-const handlePost = () => {
+  const handlePost = () => {
     if (newPost.trim()) {
       const post = {
         id: feed.length + 1,
-        user: 'you',
+        user: user.username || 'you',
         avatar: '🎯',
         level: 'Bronze',
         action: 'shared',
@@ -182,14 +182,15 @@ const handlePost = () => {
   const getActionText = (post) => {
     switch (post.action) {
       case 'completed': return `🏆 completed the ${post.content}`;
-      case 'saved': return `💰 saved $${post.amount} to ${post.content}`;
+      case 'saved': return `💰 saved R${post.amount} to ${post.content}`;
       case 'achieved': return `🎯 achieved ${post.content}`;
       case 'started': return `🚀 started ${post.content}`;
-      case 'reached': return `🎉 reached ${post.content} with $${post.amount}`;
+      case 'reached': return `🎉 reached ${post.content} with R${post.amount}`;
       case 'joined': return `🌟 joined ${post.content}`;
       case 'shared': return `💭 shared a thought`;
       default: return post.content;
     }
+  };
 
   const filteredFeed = filter === 'all' ? feed : feed.filter(post => {
     if (filter === 'challenges') return post.type === 'challenge';
@@ -199,9 +200,9 @@ const handlePost = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 font-libre main-content">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple/5 font-libre main-content">
       {/* Header */}
-      <div className="bg-white shadow-md border-b-4 border-light-purple">
+      <div className="bg-gradient-dark shadow-xl border-b-4 border-yellow">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -214,14 +215,14 @@ const handlePost = () => {
                 </svg>
               </button>
               <div>
-                <h1 className="text-2xl font-bold text-dark-blue">Social Feed 🌟</h1>
-                <p className="text-sm text-purple">See what your saving friends are up to</p>
+                <h1 className="text-2xl font-bold text-white">Social Feed 🌟</h1>
+                <p className="text-sm text-white/80">See what your saving friends are up to</p>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <div className="text-right">
-                <p className="text-sm text-gray-600">Online Friends</p>
-                <p className="text-lg font-bold text-green-500">{friends.filter(f => f.status === 'online').length}</p>
+                <p className="text-sm text-white/80">Online Friends</p>
+                <p className="text-lg font-bold text-yellow">{friends.filter(f => f.status === 'online').length}</p>
               </div>
             </div>
           </div>
@@ -233,7 +234,7 @@ const handlePost = () => {
           {/* Main Feed */}
           <div className="xl:col-span-3 space-y-6">
             {/* Create Post */}
-            <div className="bg-white p-6 rounded-xl shadow-lg">
+            <div className="bg-gradient-to-r from-white to-light-purple/10 p-6 rounded-xl shadow-xl border-2 border-light-purple/20">
               <h3 className="text-lg font-semibold text-dark-blue mb-4">Share Your Progress 📝</h3>
               <div className="flex space-x-4">
                 <div className="w-12 h-12 bg-light-purple rounded-full flex items-center justify-center">
@@ -244,12 +245,12 @@ const handlePost = () => {
                     value={newPost}
                     onChange={(e) => setNewPost(e.target.value)}
                     placeholder="What's your latest savings win? Share with the community!"
-                    className="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-light-purple focus:ring-4 focus:ring-light-purple/20 resize-none"
+                    className="w-full p-3 border-2 border-light-purple/30 rounded-lg focus:border-light-purple focus:ring-4 focus:ring-light-purple/20 resize-none bg-white/80"
                     rows={3}
                   />
                   <div className="flex justify-between items-center mt-3">
                     <div className="flex space-x-2">
-                      <span className="text-sm text-gray-500">💰 Add amount</span>
+                      <span className="text-sm text-gray-500">💰 Add amount (R)</span>
                       <span className="text-sm text-gray-500">🏷️ Add tags</span>
                     </div>
                     <button
@@ -264,7 +265,7 @@ const handlePost = () => {
             </div>
 
             {/* Feed Filters */}
-            <div className="bg-white p-4 rounded-xl shadow-lg">
+            <div className="bg-gradient-to-r from-yellow/10 to-light-purple/10 p-4 rounded-xl shadow-lg border-2 border-yellow/20">
               <div className="flex flex-wrap gap-2">
                 <button 
                   onClick={() => setFilter('all')}
@@ -304,7 +305,12 @@ const handlePost = () => {
             {/* Feed Posts */}
             <div className="space-y-4">
               {filteredFeed.map((post) => (
-                <div key={post.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div key={post.id} className={`rounded-xl shadow-xl overflow-hidden border-2 ${
+                  post.type === 'challenge' ? 'bg-gradient-to-r from-white to-yellow/10 border-yellow/30' :
+                  post.type === 'savings' ? 'bg-gradient-to-r from-white to-green-50 border-green-200' :
+                  post.type === 'milestone' || post.type === 'goal' ? 'bg-gradient-to-r from-white to-purple/10 border-purple/30' :
+                  'bg-gradient-to-r from-white to-light-purple/5 border-light-purple/20'
+                }`}>
                   <div className="p-6">
                     {/* Post Header */}
                     <div className="flex items-start justify-between mb-4">
@@ -432,11 +438,11 @@ const handlePost = () => {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Online Friends */}
-            <div className="bg-white p-6 rounded-xl shadow-lg">
+            <div className="bg-gradient-to-br from-white to-light-purple/10 p-6 rounded-xl shadow-xl border-2 border-light-purple/20">
               <h3 className="text-lg font-semibold text-dark-blue mb-4">Friends Online</h3>
               <div className="space-y-3">
                 {friends.map((friend, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+                  <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-light-purple/10 transition-colors duration-300 border border-light-purple/20">
                     <div className="flex items-center space-x-3">
                       <div className="relative">
                         <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
@@ -466,11 +472,11 @@ const handlePost = () => {
             </div>
 
             {/* Trending Challenges */}
-            <div className="bg-white p-6 rounded-xl shadow-lg">
+            <div className="bg-gradient-to-br from-white to-yellow/10 p-6 rounded-xl shadow-xl border-2 border-yellow/20">
               <h3 className="text-lg font-semibold text-dark-blue mb-4">Trending Challenges 🔥</h3>
               <div className="space-y-3">
                 {trendingChallenges.map((challenge, index) => (
-                  <div key={index} className="p-3 bg-gray-50 rounded-lg">
+                  <div key={index} className="p-3 bg-yellow/5 rounded-lg border border-yellow/20">
                     <h4 className="font-medium text-gray-800">{challenge.name}</h4>
                     <div className="flex justify-between items-center mt-2">
                       <span className="text-sm text-gray-600">{challenge.participants} participants</span>
@@ -485,14 +491,14 @@ const handlePost = () => {
             </div>
 
             {/* Weekly Highlights */}
-            <div className="bg-white p-6 rounded-xl shadow-lg">
+            <div className="bg-gradient-to-br from-white to-purple/10 p-6 rounded-xl shadow-xl border-2 border-purple/20">
               <h3 className="text-lg font-semibold text-dark-blue mb-4">This Week's Highlights ✨</h3>
               <div className="space-y-4">
                 <div className="text-center p-4 bg-yellow/10 rounded-lg">
                   <div className="text-2xl mb-2">🏆</div>
                   <p className="text-sm font-medium text-gray-800">Top Saver</p>
                   <p className="text-lg font-bold text-yellow">challenge_king</p>
-                  <p className="text-xs text-gray-600">$285 this week</p>
+                  <p className="text-xs text-gray-600">R285 this week</p>
                 </div>
                 
                 <div className="text-center p-4 bg-green-50 rounded-lg">
@@ -512,7 +518,7 @@ const handlePost = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="bg-white p-6 rounded-xl shadow-lg">
+            <div className="bg-gradient-to-br from-white to-green-50 p-6 rounded-xl shadow-xl border-2 border-green-200">
               <h3 className="text-lg font-semibold text-dark-blue mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <button className="w-full bg-light-purple hover:bg-purple text-white font-semibold py-3 rounded-lg transition-all duration-300">
@@ -528,7 +534,7 @@ const handlePost = () => {
             </div>
 
             {/* Community Stats */}
-            <div className="bg-white p-6 rounded-xl shadow-lg">
+            <div className="bg-gradient-to-br from-white to-blue-50 p-6 rounded-xl shadow-xl border-2 border-blue-200">
               <h3 className="text-lg font-semibold text-dark-blue mb-4">Community Stats 📊</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -541,11 +547,11 @@ const handlePost = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Total Saved:</span>
-                  <span className="font-semibold text-green-600">$2.3M</span>
+                  <span className="font-semibold text-green-600">R2.3M</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">This Week:</span>
-                  <span className="font-semibold text-yellow">$45.2K</span>
+                  <span className="font-semibold text-yellow">R45.2K</span>
                 </div>
               </div>
             </div>
