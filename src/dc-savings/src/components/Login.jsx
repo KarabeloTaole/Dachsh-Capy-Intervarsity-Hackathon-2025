@@ -39,7 +39,7 @@ const Login = () => {
     setTimeout(() => {
       // Update global state with user info
       updateUser({
-        username: formData.username,
+        username: "You",
         name: formData.username === 'Karabelo' ? 'Karabelo' : formData.username,
         email: `${formData.username}@email.com`,
         loginStatus: true,

@@ -113,7 +113,7 @@ const Leaderboard = () => {
 
   const getCurrentUserData = () => {
     const data = categoryFilter === 'all' ? leaderboardData[timeFilter] : categoryData[categoryFilter];
-    return data.find(user => user.username === 'you') || data.find(user => user.username.includes('you'));
+    return data.find(user => user.username === 'You') || data.find(user => user.username.includes('You'));
   };
 
   const currentUser = getCurrentUserData();
@@ -261,7 +261,7 @@ const Leaderboard = () => {
                   <div 
                     key={index}
                     className={`flex items-center justify-between p-4 rounded-lg transition-all duration-300 ${
-                      user.username === 'you' || user.username.includes('you')
+                      user.username === 'You' || user.username.includes('You')
                         ? 'bg-light-purple/20 border-2 border-light-purple transform scale-105' 
                         : 'bg-gray-50 hover:bg-gray-100'
                     }`}
@@ -278,9 +278,9 @@ const Leaderboard = () => {
                       <span className="text-2xl">{user.badge}</span>
                       <div>
                         <p className={`font-semibold ${
-                          user.username === 'you' || user.username.includes('you') ? 'text-light-purple' : 'text-gray-800'
+                          user.username === 'You' || user.username.includes('You') ? 'text-light-purple' : 'text-gray-800'
                         }`}>
-                          {user.username} {(user.username === 'you' || user.username.includes('you'))}
+                          {user.username} {(user.username === 'You' || user.username.includes('You'))}
                         </p>
                         <div className="flex items-center space-x-3 text-sm text-gray-600">
                           <span>{user.level} Level</span>

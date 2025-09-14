@@ -15,7 +15,7 @@ class GlobalState {
       // User Profile
       user: {
         name: "Karabelo",
-        username: "you",
+        username: "You",
         email: "karabelo@email.com",
         phone: "+27 123 456 789",
         bio: "Passionate saver working towards financial freedom! 💪",
