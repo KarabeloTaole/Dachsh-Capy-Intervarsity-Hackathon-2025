@@ -131,3 +131,68 @@ const SocialFeed = ({ onBack }) => {
     ];
 
 };
+
+const handlePost = () => {
+    if (newPost.trim()) {
+      const post = {
+        id: feed.length + 1,
+        user: 'you',
+        avatar: '🎯',
+        level: 'Bronze',
+        action: 'shared',
+        type: 'post',
+        content: newPost,
+        amount: null,
+        timestamp: 'just now',
+        likes: 0,
+        comments: [],
+        liked: false
+      };
+      setFeed([post, ...feed]);
+      setNewPost('');
+      alert('Posted successfully! 🎉');
+    }
+  };
+
+  const handleLike = (postId) => {
+    setFeed(feed.map(post => 
+      post.id === postId 
+        ? { ...post, liked: !post.liked, likes: post.liked ? post.likes - 1 : post.likes + 1 }
+        : post
+    ));
+  };
+
+  const handleComment = (postId) => {
+    if (newComment.trim()) {
+      setFeed(feed.map(post => 
+        post.id === postId 
+          ? { 
+              ...post, 
+              comments: [...post.comments, { user: 'you', text: newComment, time: 'just now' }]
+            }
+          : post
+      ));
+      setNewComment('');
+      setShowCommentBox(null);
+    }
+  };
+
+  const getActionText = (post) => {
+    switch (post.action) {
+      case 'completed': return `🏆 completed the ${post.content}`;
+      case 'saved': return `💰 saved $${post.amount} to ${post.content}`;
+      case 'achieved': return `🎯 achieved ${post.content}`;
+      case 'started': return `🚀 started ${post.content}`;
+      case 'reached': return `🎉 reached ${post.content} with $${post.amount}`;
+      case 'joined': return `🌟 joined ${post.content}`;
+      case 'shared': return `💭 shared a thought`;
+      default: return post.content;
+    }
+  };
+
+  const filteredFeed = filter === 'all' ? feed : feed.filter(post => {
+    if (filter === 'challenges') return post.type === 'challenge';
+    if (filter === 'savings') return post.type === 'savings';
+    if (filter === 'achievements') return post.type === 'milestone' || post.type === 'goal';
+    return true;
+  });
