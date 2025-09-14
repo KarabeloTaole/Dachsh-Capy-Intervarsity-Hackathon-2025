@@ -151,7 +151,7 @@ Dachsh-Capy-Intervarsity-Hackathon-2025/
 
 ## 🎥 Demo & Presentation
 
-- **📺 [Demo Video](demo/demo.mp4)** - Full application walkthrough
+- **📺 [Demo Video](https://drive.google.com/file/d/1Tik-DqCu7cUZSxU-jRFhUMfXPR5tU58r/view?usp=sharing)** - Full application walkthrough
 - **📊 [Presentation](demo/demo.pptx)** - Project overview and highlights
 
 *Note: Demo files should be placed in the `demo/` directory*
