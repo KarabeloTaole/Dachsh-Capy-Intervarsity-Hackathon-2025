@@ -54,6 +54,14 @@ const Leaderboard = ({ onBack }) => {
     ]
   };
 
+  const trendData = [
+    { month: 'May', challenge_king: 1100, savings_pro: 780, you: 420 },
+    { month: 'Jun', challenge_king: 1180, savings_pro: 820, you: 450 },
+    { month: 'Jul', challenge_king: 1220, savings_pro: 850, you: 480 },
+    { month: 'Aug', challenge_king: 1240, savings_pro: 870, you: 500 },
+    { month: 'Sep', challenge_king: 1250, savings_pro: 890, you: 520 }
+  ];
+
 
   const getCurrentUserData = () => {
     const data = categoryFilter === 'all' ? leaderboardData[timeFilter] : categoryData[categoryFilter];
@@ -195,6 +203,123 @@ const Leaderboard = ({ onBack }) => {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* Full Rankings */}
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <h3 className="text-xl font-semibold text-dark-purple mb-4">Complete Rankings</h3>
+              <div className="space-y-2">
+                {displayData.map((user, index) => (
+                  <div 
+                    key={index}
+                    className={`flex items-center justify-between p-4 rounded-lg transition-all duration-300 ${
+                      user.username === 'you' || user.username.includes('you')
+                        ? 'bg-light-purple/20 border-2 border-light-purple transform scale-105' 
+                        : 'bg-gray-50 hover:bg-gray-100'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${
+                        user.rank === 1 ? 'bg-yellow text-dark-purple' :
+                        user.rank === 2 ? 'bg-gray-400' :
+                        user.rank === 3 ? 'bg-orange-400' :
+                        'bg-gray-300 text-gray-700'
+                      }`}>
+                        {user.rank}
+                      </div>
+                      <span className="text-2xl">{user.badge}</span>
+                      <div>
+                        <p className={`font-semibold ${
+                          user.username === 'you' || user.username.includes('you') ? 'text-light-purple' : 'text-gray-800'
+                        }`}>
+                          {user.username} {(user.username === 'you' || user.username.includes('you')) && '(You)'}
+                        </p>
+                        <div className="flex items-center space-x-3 text-sm text-gray-600">
+                          <span>{user.level} Level</span>
+                          {user.streak && <span>🔥 {user.streak} days</span>}
+                          {user.category && <span>📁 {user.category}</span>}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xl font-bold text-dark-purple">R{user.saved}</p>
+                      <div className="flex items-center space-x-2">
+                        {user.change && user.change !== '0' && (
+                          <span className={`text-sm font-medium ${
+                            user.change.startsWith('+') ? 'text-green-600' : 
+                            user.change.startsWith('-') ? 'text-red-600' : 
+                            'text-blue-600'
+                          }`}>
+                            {user.change === 'new' ? 'NEW' : `${user.change} from last ${timeFilter.slice(0, -2)}`}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Trends Chart */}
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <h3 className="text-xl font-semibold text-dark-purple mb-4">Savings Trends Over Time</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={trendData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Line type="monotone" dataKey="challenge_king" stroke="#FFCC00" strokeWidth={3} name="Challenge King" />
+                  <Line type="monotone" dataKey="savings_pro" stroke="#471396" strokeWidth={2} name="Savings Pro" />
+                  <Line type="monotone" dataKey="you" stroke="#B13BFF" strokeWidth={3} name="You" />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Top Performers by Category */}
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <h3 className="text-xl font-semibold text-dark-purple mb-4">Performance Comparison</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={displayData.slice(0, 8)}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="username" />
+                  <YAxis />
+                  <Tooltip />
+                  <Bar dataKey="saved" fill="#B13BFF" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Your Position Card */}
+            <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-light-purple">
+              <h3 className="text-lg font-semibold text-dark-purple mb-3">Your Position</h3>
+              {currentUser && (
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-light-purple rounded-full flex items-center justify-center mx-auto mb-3">
+                    <span className="text-2xl">{currentUser.badge}</span>
+                  </div>
+                  <p className="text-2xl font-bold text-dark-purple">Rank #{currentUser.rank}</p>
+                  <p className="text-lg font-semibold text-light-purple">R{currentUser.saved} saved</p>
+                  <div className="mt-3 p-3 bg-light-purple/10 rounded-lg">
+                    <p className="text-sm font-medium text-purple">{currentUser.level} Level</p>
+                    {currentUser.streak && <p className="text-xs text-gray-600">{currentUser.streak} day streak</p>}
+                  </div>
+                  {currentUser.change && currentUser.change !== '0' && (
+                    <div className="mt-2">
+                      <span className={`text-sm font-medium px-2 py-1 rounded-full ${
+                        currentUser.change.startsWith('+') ? 'bg-green-100 text-green-800' : 
+                        currentUser.change.startsWith('-') ? 'bg-red-100 text-red-800' : 
+                        'bg-blue-100 text-blue-800'
+                      }`}>
+                        {currentUser.change === 'new' ? 'New Entry!' : `${currentUser.change} this ${timeFilter.slice(0, -2)}`}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
