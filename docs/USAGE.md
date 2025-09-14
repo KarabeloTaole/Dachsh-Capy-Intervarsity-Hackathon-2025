@@ -89,8 +89,8 @@ Welcome to the DC Savings application! This guide will walk you through how to u
 ## 🎥 Demo
 
 Check out the Demos: 
-- [Demo Video](../demo/demo.mp4) - Full application walkthrough
-- [Demo Presentation](../demo/demo.pptx) - Feature overview and project highlights
+- [Demo Video](https://drive.google.com/file/d/1Tik-DqCu7cUZSxU-jRFhUMfXPR5tU58r/view?usp=sharing) - Full application walkthrough
+- [Demo Presentation](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/demo/Hackathon%20presentation.pdf) - Feature overview and project highlights
 
 *Note: Demo files should be placed in the `demo/` directory at the project root*
 
@@ -131,4 +131,3 @@ Check out the Demos:
 
 ---
 
-*Happy Saving! 💰 Build better financial habits with DC Savings.*

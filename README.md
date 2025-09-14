@@ -242,15 +242,6 @@ This project was built for a hackathon, but we welcome feedback and suggestions!
 
 ---
 
-## 📞 Support & Contact
-
-- 🐛 **Issues**: [GitHub Issues](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/issues)
-- 💬 **Questions**: Contact the development team
-- 📧 **Email**: [Your Contact Email]
-- 🌐 **Demo**: [Live Demo Link if available]
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

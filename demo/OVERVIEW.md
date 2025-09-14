@@ -114,5 +114,3 @@ The goal is to transform saving money from a chore into an enjoyable, community-
 - **Offline Mode** - Basic functionality without internet connection
 
 ---
-
-*DC Savings aims to revolutionize personal finance by making saving money a social, engaging, and rewarding experience. Together, we can build better financial futures! 💰🚀*
