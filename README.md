@@ -9,6 +9,13 @@
 > **Transform your savings journey into an engaging, social experience with challenges, leaderboards, and community support!**
 
 ---
+###Meet  the team
+
+ | Name | Links |
+|----------------|------|
+| Unathi Dlamini<br><br><img src="./assets/phot2.JPG" width="100"> | <br>[<img src="https://github.com/favicon.ico" width="16" height="16">](https://github.com/un4thi) [<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/linkedin.svg" width="16" height="16">](https://www.linkedin.com/in/unathi-dlamini-237007224/)
+| Karabelo Taole<br><br><img src="./assets/phot.jpg" width="100"> | <br>[<img src="https://github.com/favicon.ico" width="16" height="16">](https://github.com/KarabeloTaole) [<img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/brands/linkedin.svg" width="16" height="16">](https://www.linkedin.com/in/karabelo-taole-70480322a/)
+---
 
 ## 🚀 Quick Start
 

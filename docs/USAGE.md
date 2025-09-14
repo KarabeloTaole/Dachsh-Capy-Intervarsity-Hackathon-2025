@@ -2,6 +2,8 @@
 
 Welcome to the DC Savings application! This guide will walk you through how to use all the features of the savings and financial management platform.
 
+
+
 ## ▶️ Running the Application
 
 1. **Navigate to the project directory:**
