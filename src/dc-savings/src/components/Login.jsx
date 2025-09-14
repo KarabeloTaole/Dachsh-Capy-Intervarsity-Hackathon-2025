@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useGlobalState } from './GlobalState';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ onLogin }) => {
+    const global = useGlobalState();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -42,8 +45,9 @@ const Login = ({ onLogin }) => {
       alert(`Welcome back, ${formData.username}! You have successfully logged in.`);
       setIsLoading(false);
       
-      // Navigate to profile page
+      // Navigate to dashboard page
       onLogin();
+      navigate('/dashboard');
     }, 2000);
   };
 
