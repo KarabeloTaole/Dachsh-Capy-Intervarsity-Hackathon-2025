@@ -142,10 +142,10 @@ Dachsh-Capy-Intervarsity-Hackathon-2025/
 
 | Document | Description |
 |----------|-------------|
-| **[SETUP.md](SETUP.md)** | Complete installation and setup guide |
-| **[USAGE.md](USAGE.md)** | How to use the application - user guide |
-| **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** | Project summary, inspiration, and future plans |
-| **[ACKNOWLEDGEMENTS.md](ACKNOWLEDGEMENTS.md)** | Credits for third-party libraries and resources |
+| **[SETUP.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/SETUP.md)** | Complete installation and setup guide |
+| **[USAGE.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/USAGE.md)** | How to use the application - user guide |
+| **[PROJECT_OVERVIEW.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/demo/OVERVIEW.md)** | Project summary, inspiration, and future plans |
+| **[ACKNOWLEDGEMENTS.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/ACKNOWLEDGEMENTS.md)** | Credits for third-party libraries and resources |
 
 ---
 
@@ -175,8 +175,8 @@ Dachsh-Capy-Intervarsity-Hackathon-2025/
    - Test Profile management and customization
 
 3. **Read Documentation**:
-   - [USAGE.md](USAGE.md) for detailed feature walkthrough
-   - [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) for vision and inspiration
+   - [USAGE.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/docs/USAGE.md) for detailed feature walkthrough
+   - [PROJECT_OVERVIEW.md](https://github.com/KarabeloTaole/Dachsh-Capy-Intervarsity-Hackathon-2025/blob/feature/login/demo/OVERVIEW.md) for vision and inspiration
 
 ---
 
