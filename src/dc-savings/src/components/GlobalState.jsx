@@ -35,7 +35,7 @@ class GlobalState {
         
         // Rankings
         rank: {
-          weekly: { rank: 3, saved: 195, change: '+1', level: 'Bronze' },
+          weekly: { rank: 3, saved: 194, change: '+1', level: 'Bronze' },
           monthly: { rank: 4, saved: 520, change: '-1', level: 'Bronze' },
           allTime: { rank: 5, saved: 3420, change: '-1', level: 'Bronze' },
         },

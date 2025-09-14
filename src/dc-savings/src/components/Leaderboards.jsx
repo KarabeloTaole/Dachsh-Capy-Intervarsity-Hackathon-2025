@@ -1,16 +1,25 @@
 import { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
-
+import { useGlobalState } from './GlobalState';
 const Leaderboard = ({ onBack }) => {
+  const { user } = useGlobalState();
   const [timeFilter, setTimeFilter] = useState('monthly');
   const [categoryFilter, setCategoryFilter] = useState('all');
 
   // Mock leaderboard data for different time periods genrated by Claude
-  const leaderboardData = {
+   const leaderboardData = {
     weekly: [
       { rank: 1, username: 'challenge_king', saved: 285, change: '+2', badge: '👑', level: 'Gold', streak: 7 },
       { rank: 2, username: 'savings_pro', saved: 220, change: '0', badge: '🥈', level: 'Silver', streak: 6 },
-      { rank: 3, username: 'you', saved: 195, change: '+1', badge: '🥉', level: 'Bronze', streak: 5 },
+      { 
+        rank: user.rank.weekly.rank, 
+        username: user.username, 
+        saved: user.rank.weekly.saved, 
+        change: user.rank.weekly.change,
+        badge: '🥉', 
+        level: user.rank.weekly.level,
+        streak: user.savings.streak
+      },
       { rank: 4, username: 'money_master', saved: 180, change: '-1', badge: '🏅', level: 'Bronze', streak: 4 },
       { rank: 5, username: 'coin_collector', saved: 165, change: '0', badge: '🏅', level: 'Bronze', streak: 3 }
     ],
@@ -18,7 +27,15 @@ const Leaderboard = ({ onBack }) => {
       { rank: 1, username: 'challenge_king', saved: 1250, change: '0', badge: '👑', level: 'Gold', streak: 28 },
       { rank: 2, username: 'savings_pro', saved: 890, change: '0', badge: '🥈', level: 'Silver', streak: 15 },
       { rank: 3, username: 'money_master', saved: 675, change: '+1', badge: '🥉', level: 'Silver', streak: 12 },
-      { rank: 4, username: 'you', saved: 520, change: '-1', badge: '🏅', level: 'Bronze', streak: 8 },
+      { 
+        rank: user.rank.monthly.rank, 
+        username: user.username, 
+        saved: user.rank.monthly.saved, 
+        change: user.rank.monthly.change,
+        badge: '🏅', 
+        level: user.rank.monthly.level,
+        streak: user.savings.streak
+      },
       { rank: 5, username: 'coin_collector', saved: 445, change: '0', badge: '🏅', level: 'Bronze', streak: 6 },
       { rank: 6, username: 'penny_pincher', saved: 380, change: '+2', badge: '🏅', level: 'Bronze', streak: 4 },
       { rank: 7, username: 'budget_boss', saved: 315, change: '-1', badge: '🏅', level: 'Bronze', streak: 3 },
@@ -30,7 +47,15 @@ const Leaderboard = ({ onBack }) => {
       { rank: 2, username: 'savings_pro', saved: 6420, change: '0', badge: '🥈', level: 'Silver', streak: 15 },
       { rank: 3, username: 'money_master', saved: 4890, change: '0', badge: '🥉', level: 'Silver', streak: 12 },
       { rank: 4, username: 'coin_collector', saved: 3650, change: '+1', badge: '🏅', level: 'Bronze', streak: 6 },
-      { rank: 5, username: 'you', saved: 3420, change: '-1', badge: '🏅', level: 'Bronze', streak: 8 },
+      { 
+        rank: user.rank.allTime.rank, 
+        username: user.username, 
+        saved: user.rank.allTime.saved, 
+        change: user.rank.allTime.change,
+        badge: '🏅', 
+        level: user.rank.allTime.level,
+        streak: user.savings.streak
+      },
       { rank: 6, username: 'penny_pincher', saved: 2890, change: '0', badge: '🏅', level: 'Bronze', streak: 4 }
     ]
   };
@@ -40,7 +65,14 @@ const Leaderboard = ({ onBack }) => {
     emergency: [
       { rank: 1, username: 'safety_first', saved: 2500, badge: '🛡️', category: 'Emergency Fund' },
       { rank: 2, username: 'prepared_saver', saved: 2200, badge: '⚡', category: 'Emergency Fund' },
-      { rank: 3, username: 'you', saved: 1800, badge: '🥉', category: 'Emergency Fund' }
+      { 
+        rank: 3, 
+        username: user.username, 
+        saved: user.savings.emergency, 
+        badge: '🥉', 
+        category: 'Emergency Fund',
+        level: 'Bronze'
+      },
     ],
     investment: [
       { rank: 1, username: 'challenge_king', saved: 5500, badge: '📈', category: 'Investments' },
@@ -50,16 +82,23 @@ const Leaderboard = ({ onBack }) => {
     vacation: [
       { rank: 1, username: 'travel_bug', saved: 3200, badge: '✈️', category: 'Vacation' },
       { rank: 2, username: 'wanderlust', saved: 2800, badge: '🌍', category: 'Vacation' },
-      { rank: 3, username: 'you', saved: 2400, badge: '🏖️', category: 'Vacation' }
+      { 
+        rank: 3, 
+        username: user.username, 
+        saved: user.savings.vacation, 
+        badge: '🏖️', 
+        category: 'Vacation',
+        level: 'Bronze'
+      },
     ]
   };
 
   const trendData = [
-    { month: 'May', challenge_king: 1100, savings_pro: 780, you: 420 },
-    { month: 'Jun', challenge_king: 1180, savings_pro: 820, you: 450 },
-    { month: 'Jul', challenge_king: 1220, savings_pro: 850, you: 480 },
-    { month: 'Aug', challenge_king: 1240, savings_pro: 870, you: 500 },
-    { month: 'Sep', challenge_king: 1250, savings_pro: 890, you: 520 }
+    { month: 'May', challenge_king: 1100, savings_pro: 780, you: user.savings.current - 100 },
+    { month: 'Jun', challenge_king: 1180, savings_pro: 820, you: user.savings.current - 70 },
+    { month: 'Jul', challenge_king: 1220, savings_pro: 850, you: user.savings.current - 40 },
+    { month: 'Aug', challenge_king: 1240, savings_pro: 870, you: user.savings.current - 20 },
+    { month: 'Sep', challenge_king: 1250, savings_pro: 890, you: user.savings.current }
   ];
 
   const achievements = [
@@ -238,7 +277,7 @@ const Leaderboard = ({ onBack }) => {
                         <p className={`font-semibold ${
                           user.username === 'you' || user.username.includes('you') ? 'text-light-purple' : 'text-gray-800'
                         }`}>
-                          {user.username} {(user.username === 'you' || user.username.includes('you')) && '(You)'}
+                          {user.username} {(user.username === 'you' || user.username.includes('you'))}
                         </p>
                         <div className="flex items-center space-x-3 text-sm text-gray-600">
                           <span>{user.level} Level</span>
